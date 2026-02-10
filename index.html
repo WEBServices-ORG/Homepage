@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBServices - Developer Tools</title>
+    <meta name="description" content="Open-source & paid developer tools. Built lean.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5D7NJDQP');</script>
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        
+        .github-link:hover {
+            opacity: 1;
+        }
+        
+        .github-link svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            font-size: 1.25rem;
+            color: #cfcfcf;
+        }
+        
+        /* Products */
+        .products-section {
+            padding: 3rem 0;
+        }
+        
+        .products-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: #0b0b0b;
+            border: 1px solid #4f46e5;
+            border-radius: 12px;
+            padding: 24px;
+            width: 320px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 24px rgba(79, 70, 229, 0.35);
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .badge.oss {
+            background: rgba(79, 70, 229, 0.15);
+            color: #a5b4fc;
+        }
+        
+        .badge.coming {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ccc;
+        }
+        
+        .product-desc {
+            margin: 16px 0;
+            color: #cfcfcf;
+            font-size: 0.95rem;
+        }
+        
+        .product-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .product-links a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .product-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Support */
+        .support-section {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        
+        .support-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .support-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .support-icons a {
+            opacity: 0.7;
+            transition: opacity 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+        
+        .support-icons a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .support-icons img {
+            width: 48px;
+            height: 48px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #222;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #a5b4fc;
+        }
+        
+        .footer-section a {
+            color: #cfcfcf;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        .footer-avatar {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #4f46e5;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-bottom p {
+            margin: 0.5rem 0;
+        }
+        
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                font-size: 1.1rem;
+                padding: 2rem 0 1rem;
+            }
+            
+            .products-section h2,
+            .support-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .product-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D7NJDQP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>WEBServices</h1>
+            <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Organization">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            Open-source & paid developer tools. Built lean.
+        </div>
+    </section>
+    
+    <!-- Products -->
+    <section class="products-section">
+        <div class="container">
+            <h2>Products</h2>
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Coming Soon</h3>
+                        <span class="badge oss">Open Source</span>
+                    </div>
+                    
+                    <p class="product-desc">
+                        Coming Soon.
+                    </p>
+                    
+                    <div class="product-links">
+                        <a href="https://github.com/WEBServices-ORG/Coming Soon" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </a>
+                        <a href="https://github.com/WEBServices-ORG/Coming Soon#readme" target="_blank" rel="noopener noreferrer">
+                            Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Support -->
+    <section class="support-section">
+        <div class="container">
+            <h2>Support</h2>
+            <div class="support-icons">
+                <a href="https://www.buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+                </a>
+                <a href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi">
+                    <img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" alt="Ko-fi">
+                </a>
+                <a href="https://www.paypal.com/paypalme/webservices" target="_blank" rel="noopener noreferrer" aria-label="PayPal">
+                    <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal">
+                </a>
+                <a href="https://github.com/sponsors/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub Sponsors">
+                    <svg width="48" height="48" viewBox="0 0 16 16" fill="#ea4aaa" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.565 20.565 0 008 13.393a20.561 20.561 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5zM8 14.25l-.345.666-.002-.001-.006-.003-.018-.01a7.643 7.643 0 01-.31-.17 22.075 22.075 0 01-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.08 22.08 0 01-3.744 2.584l-.018.01-.006.003h-.002L8 14.25zm0 0l.345.666a.752.752 0 01-.69 0L8 14.25z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-avatar">
+                <img src="https://www.gravatar.com/avatar/9a5fa8e43bb11ac0829c9944075751a4?s=160&d=identicon" alt="WEBServices Avatar">
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="mailto:contact@webservicesdev.com">contact@webservicesdev.com</a>
+                    <a href="mailto:support@webservicesdev.com">support@webservicesdev.com</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#terms">Terms of Use</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">GitHub Organization</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; WEBServices &mdash; Registered company, Israel</p>
+                <p class="disclaimer">Disclaimer: All software and content are provided "as is", without warranty of any kind. Use at your own risk.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Ko-fi Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('webservices', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support Us',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
+</body>
+</html>
