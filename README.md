@@ -36,6 +36,7 @@ website/
 ├── index.html          # Main landing page (HTML/CSS, no JS required)
 ├── Website.md          # Design specification document
 ├── README.md           # Project overview
+├── SECURITY.md         # Security policy and best practices
 ├── License.md          # License information
 ├── LICENSE             # MIT license file
 ├── CNAME               # Domain configuration (webservicesdev.com)
@@ -49,6 +50,10 @@ website/
 ## Deployment
 
 The repository includes a GitHub Actions workflow (`.github/workflows/wpcom.yml`) that automatically publishes the site to WordPress.com when changes are pushed to the `main` branch.
+
+## Security
+
+For information about security policies, deploy keys, and best practices, see [SECURITY.md](SECURITY.md).
 
 ## Contact
 
