@@ -1,21 +1,52 @@
-name: Publish Website
+name: Package WordPress Theme
 
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
-  Publish-Website:
-    name: Publish-Website
+  package-theme:
+    name: Package WordPress Theme
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Upload the artifact
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create theme package
+        run: |
+          cd wp-theme
+          zip -r ../webservices-theme.zip .
+          cd ..
+          echo "Theme packaged successfully"
+
+      - name: Upload theme artifact
         uses: actions/upload-artifact@v4
         with:
-          name: wpcom
+          name: webservices-theme
           path: |
-            .
-            !.git*
-          retention-days: 1
+            webservices-theme.zip
+            wp-theme/
+          retention-days: 30
+
+      - name: Deployment Instructions
+        run: |
+          echo "=========================================="
+          echo "WordPress Theme Packaged Successfully!"
+          echo "=========================================="
+          echo ""
+          echo "To deploy to WordPress.com:"
+          echo "1. Go to your WordPress.com site dashboard"
+          echo "2. Navigate to Tools → GitHub Deployments"
+          echo "3. Connect this GitHub repository"
+          echo "4. Select the 'main' branch"
+          echo "5. Configure deployment to sync the 'wp-theme' directory"
+          echo ""
+          echo "For manual installation:"
+          echo "1. Download the 'webservices-theme.zip' artifact from this workflow run"
+          echo "2. Go to WordPress Admin → Appearance → Themes → Add New"
+          echo "3. Click 'Upload Theme' and select the zip file"
+          echo "4. Activate the WEBServices theme"
+          echo ""
+          echo "=========================================="
