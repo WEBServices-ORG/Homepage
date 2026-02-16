@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
             </a>
         </p>
         <p style="margin-top: 20px;">
-            <?php bloginfo('name'); ?> &copy; <?php echo date('Y'); ?> | 
+            <?php bloginfo('name'); ?> &copy; <?php echo esc_html(wp_date('Y')); ?> | 
             <a href="<?php echo esc_url(home_url('/')); ?>" class="github-link">
                 <?php echo esc_html(webservices_get_option('webservices_domain')); ?>
             </a>

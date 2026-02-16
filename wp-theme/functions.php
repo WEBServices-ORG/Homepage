@@ -89,5 +89,7 @@ function webservices_get_option($option_name) {
         'webservices_domain'  => 'webservicesdev.com',
     );
     
-    return get_theme_mod($option_name, $defaults[$option_name]);
+    $default_value = isset($defaults[$option_name]) ? $defaults[$option_name] : '';
+    
+    return get_theme_mod($option_name, $default_value);
 }
