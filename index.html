@@ -1,234 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBServices - Digital Solutions & Development</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEBServices</title>
+  <link rel="icon" type="image/png" href="assets/favicons/favicon-32.png" />
+  <meta name="description" content="Open-source and paid developer tools by WEBServices." />
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --surface: #111111;
+      --text: #f2f2f2;
+      --muted: #b8b8b8;
+      --line: #252525;
+      --accent: #4f46e5;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    body {
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
 
-        /* Header */
-        header {
-            padding: 60px 0 40px;
-            text-align: center;
-            border-bottom: 1px solid #222;
-        }
+    .container {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+    }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-        }
+    header {
+      padding: 32px 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
 
-        .tagline {
-            font-size: 1.3rem;
-            color: #999;
-            margin-bottom: 30px;
-        }
+    .brand-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    h1 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
 
-        .btn {
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            min-width: 180px;
-            text-align: center;
-        }
+    .org-link {
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      padding: 6px;
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
+    main { padding: 38px 0 56px; }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
+    .hero {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 44px;
+      font-size: clamp(1rem, 2vw, 1.12rem);
+    }
 
-        .btn-secondary {
-            background: transparent;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
+    section { margin-bottom: 48px; }
 
-        .btn-secondary:hover {
-            background: #667eea;
-            color: #fff;
-        }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
 
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-        }
+    .products {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #fff;
-        }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px;
+      width: min(360px, 100%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 22px rgba(79, 70, 229, 0.28);
+    }
 
-        .feature-card {
-            background: #151515;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            transition: all 0.3s ease;
-        }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .feature-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+    .product-header h3 { font-size: 1.2rem; font-weight: 700; }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+    .badge {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: rgba(79, 70, 229, 0.18);
+      color: #b6b2ff;
+      border: 1px solid rgba(79, 70, 229, 0.34);
+      white-space: nowrap;
+    }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #fff;
-        }
+    .product-desc { margin: 16px 0; color: var(--muted); }
 
-        .feature-card p {
-            color: #999;
-            line-height: 1.8;
-        }
+    .product-links { display: flex; gap: 14px; }
 
-        /* Tech Stack */
-        .tech-stack {
-            padding: 80px 0;
-            background: #0f0f0f;
-        }
+    .product-links a {
+      color: #b6b2ff;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
+    .product-links a:hover { text-decoration: underline; }
 
-        .tech-item {
-            background: #151515;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #222;
-        }
+    .support-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-        .tech-item h4 {
-            color: #667eea;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
+    .support-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #171717;
+      color: var(--text);
+      font-size: 1rem;
+    }
 
-        .tech-item p {
-            color: #999;
-            font-size: 0.9rem;
-        }
+    .support-icon:hover {
+      border-color: var(--accent);
+      color: #c8c5ff;
+    }
 
-        /* Footer */
-        footer {
-            padding: 60px 0;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 42px;
+      color: var(--muted);
+      text-align: center;
+    }
 
-        footer p {
-            color: #666;
-        }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
 
-        .github-link {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
 
-        .github-link:hover {
-            text-decoration: underline;
-        }
+    .footer-links a:hover { color: #d8d8d8; text-decoration: underline; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
 
-            .tagline {
-                font-size: 1.1rem;
-            }
+    .legal-line { margin-top: 8px; font-size: 0.88rem; }
 
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
+    @media (max-width: 560px) {
+      .product-card { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>WEBServices</h1>
-            <p class="tagline">Building Next-Generation Digital Solutions</p>
-            <p style="color: #667eea; font-size: 1.1rem; margin-bottom: 30px;">webservicesdev.com</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/WEBServices-ORG" class="btn btn-primary" target="_blank">View Our Work</a>
-                <a href="mailto:contact@webservicesdev.com" class="btn btn-secondary">Contact Us</a>
-            </div>
-        </div>
-    </header>
+  <header>
+    <div class="container">
+      <div class="brand-row">
+        <img src="assets/icons/Icon.png" alt="WEBServices icon" style="width:28px;height:28px;border-radius:6px;border:1px solid #252525;" />
+        <h1>WEBServices</h1>
+        <a class="org-link" href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub Organization">⌁</a>
+      </div>
+    </div>
+  </header>
 
-    <footer>
-        <div class="container">
-            <p>
-                <a href="https://github.com/WEBServices-ORG" class="github-link" target="_blank">
-                    Explore Our Open Source Projects
-                </a>
-            </p>
-            <p style="margin-top: 20px;">WEBServices &copy; 2026 | <a href="https://webservicesdev.com" class="github-link">webservicesdev.com</a></p>
-        </div>
-    </footer>
+  <main class="container">
+    <p class="hero">Open-source &amp; paid developer tools. Built lean.</p>
+
+    <section>
+      <h2>Products</h2>
+      <div class="products">
+        <article class="product-card">
+          <div class="product-header">
+            <h3>Coming Soon</h3>
+            <span class="badge">Open Source</span>
+          </div>
+          <p class="product-desc">Coming soon.</p>
+          <div class="product-links">
+            <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">Docs</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Support</h2>
+      <div class="support-row" aria-label="Support links">
+        <a class="support-icon" href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">☕</a>
+        <a class="support-icon" href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi">K</a>
+        <a class="support-icon" href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer" aria-label="PayPal">P</a>
+        <a class="support-icon" href="https://github.com/sponsors/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub Sponsors">♥</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <img class="avatar" src="https://www.gravatar.com/avatar/9a5fa8e43bb11ac0829c9944075751a4?s=92&d=identicon" alt="WEBServices avatar" />
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:contact@webservicesdev.com">contact@webservicesdev.com</a>
+        <a href="mailto:support@webservicesdev.com">support@webservicesdev.com</a>
+        <a href="Terms-of-Use.md">Terms of Use</a>
+        <a href="Privacy-Policy.md">Privacy Policy</a>
+        <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">About Us</a>
+      </nav>
+      <p>© WEBServices — Registered company, Israel</p>
+      <p class="legal-line">Disclaimer: All software and content are provided “as is”, without warranty of any kind. Use at your own risk.</p>
+    </div>
+  </footer>
 </body>
 </html>
