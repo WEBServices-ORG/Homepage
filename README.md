@@ -33,7 +33,14 @@ This is a static landing page that showcases WEBServices' open-source projects a
 
 ```
 website/
-├── index.html          # Main landing page (HTML/CSS, no JS required)
+├── index.html          # Static landing page (for GitHub Pages)
+├── wp-theme/           # WordPress theme version
+│   ├── style.css       # Theme stylesheet with header
+│   ├── functions.php   # Theme functions
+│   ├── index.php       # Main template
+│   ├── header.php      # Header template
+│   ├── footer.php      # Footer template
+│   └── README.md       # Theme documentation
 ├── Website.md          # Design specification document
 ├── README.md           # Project overview
 ├── License.md          # License information
@@ -43,12 +50,54 @@ website/
 │   └── SKILL.md
 └── .github/
     └── workflows/
-        └── wpcom.yml   # CI/CD workflow for publishing
+        └── wpcom.yml   # WordPress theme packaging workflow
 ```
 
 ## Deployment
 
-The repository includes a GitHub Actions workflow (`.github/workflows/wpcom.yml`) that automatically publishes the site to WordPress.com when changes are pushed to the `main` branch.
+This repository supports two deployment methods:
+
+### 1. Static Site (GitHub Pages)
+
+The `index.html` file can be served as-is on GitHub Pages or any static hosting provider.
+
+**Local Testing:**
+```bash
+python3 -m http.server 8000
+```
+
+### 2. WordPress Theme (WordPress.com or Self-Hosted)
+
+The `wp-theme` directory contains a complete WordPress theme.
+
+**WordPress.com Deployment:**
+
+1. Go to your WordPress.com site dashboard (requires Business or eCommerce plan)
+2. Navigate to **Tools → GitHub Deployments**
+3. Connect this GitHub repository
+4. Select the `main` branch
+5. Configure deployment to sync the `wp-theme` directory
+6. Changes pushed to the main branch will automatically deploy
+
+**Manual Installation:**
+
+1. Download the theme package from the [latest workflow run](../../actions)
+2. Go to **WordPress Admin → Appearance → Themes → Add New**
+3. Click **Upload Theme** and select the `webservices-theme.zip` file
+4. Activate the WEBServices theme
+
+**Self-Hosted WordPress:**
+
+Copy the `wp-theme` directory to your WordPress installation:
+```bash
+cp -r wp-theme /path/to/wordpress/wp-content/themes/webservices
+```
+
+Then activate it from the WordPress admin dashboard.
+
+### GitHub Actions Workflow
+
+The repository includes a GitHub Actions workflow (`.github/workflows/wpcom.yml`) that automatically packages the WordPress theme when changes are pushed to the `main` branch. The packaged theme is available as a workflow artifact.
 
 ## Contact
 
