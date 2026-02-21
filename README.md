@@ -43,6 +43,7 @@ website/
 │   └── README.md       # Theme documentation
 ├── Website.md          # Design specification document
 ├── README.md           # Project overview
+├── SECURITY.md         # Security policy and best practices
 ├── License.md          # License information
 ├── LICENSE             # MIT license file
 ├── CNAME               # Domain configuration (webservicesdev.com)
@@ -98,6 +99,10 @@ Then activate it from the WordPress admin dashboard.
 ### GitHub Actions Workflow
 
 The repository includes a GitHub Actions workflow (`.github/workflows/wpcom.yml`) that automatically packages the WordPress theme when changes are pushed to the `main` branch. The packaged theme is available as a workflow artifact.
+
+## Security
+
+For information about security policies, deploy keys, and best practices, see [SECURITY.md](SECURITY.md).
 
 ## Contact
 
