@@ -31,7 +31,7 @@ get_header();
         <p>Run your first deterministic setup, then activate your license when ready.</p>
         <div class="primary-cta-actions">
             <a class="cta-primary" href="https://github.com/WEBServices-ORG/homepage" target="_blank" rel="noopener noreferrer">Start Trial</a>
-            <a class="cta-secondary" href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Buy License</a>
+            <a class="cta-secondary" href="https://store.webservicesdev.com" target="_blank" rel="noopener noreferrer">Buy License</a>
         </div>
     </section>
 
@@ -58,7 +58,7 @@ get_header();
             <a class="support-icon" href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">☕</a>
             <a class="support-icon" href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi">K</a>
             <a class="support-icon" href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer" aria-label="PayPal">P</a>
-            <a class="support-icon" href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer" aria-label="Lemon Squeezy">L</a>
+            <a class="support-icon" href="https://store.webservicesdev.com" target="_blank" rel="noopener noreferrer" aria-label="Lemon Squeezy">L</a>
             <a class="support-icon" href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub">G</a>
         </div>
     </section>

@@ -63,7 +63,7 @@ function webservices_output_structured_data() {
         'email' => 'contact@webservicesdev.com',
         'sameAs' => array(
             'https://github.com/WEBServices-ORG',
-            'https://webservicesdev.lemonsqueezy.com',
+            'https://store.webservicesdev.com',
         ),
     );
 

@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
             <a href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
             <a href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer">Ko-fi</a>
             <a href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer">PayPal</a>
-            <a href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
+            <a href="https://store.webservicesdev.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
             <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
 
