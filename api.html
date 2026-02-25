@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBServices - API Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            --bg: #0e1116;
+            --surface: rgba(22, 28, 38, 0.72);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: #edf2ff;
+            --muted: #9dadc7;
+            --accent: #5ad2ff;
+            font-family: "Avenir Next", "Segoe UI", "SF Pro Text", -apple-system, sans-serif;
+            background: linear-gradient(180deg, #0e1116, #0b0e13);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(980px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 52px 0 26px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+        }
+
+        main {
+            padding: 34px 0 28px;
+        }
+
+        section {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            color: var(--muted);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        code {
+            color: var(--accent);
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        .sdk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .sdk-card {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 12px;
+            background: rgba(18, 23, 33, 0.7);
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lemon Squeezy API Reference</h1>
+            <p class="subtitle">Store: <code>https://webservicesdev.lemonsqueezy.com</code></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Overview</h2>
+            <p>Lemon Squeezy API is REST-based with predictable resource URLs, JSON:API responses, and standard HTTP methods/status codes.</p>
+        </section>
+
+        <section>
+            <h2>Test Mode</h2>
+            <p>Use Test mode API keys for development and integration testing. Move to Live mode keys for production deployments.</p>
+        </section>
+
+        <section>
+            <h2>Versioning</h2>
+            <p>Endpoints include major version prefixes, for example <code>/v1</code>. Backward-incompatible changes are introduced in new major versions.</p>
+        </section>
+
+        <section>
+            <h2>Rate Limits</h2>
+            <ul>
+                <li>Limit: <code>300</code> API calls per minute</li>
+                <li>Headers: <code>X-Ratelimit-Limit</code>, <code>X-Ratelimit-Remaining</code></li>
+                <li>Exceeded limit response: <code>429 Too Many Requests</code></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>SDKs</h2>
+            <div class="sdk-grid">
+                <div class="sdk-card"><strong>JavaScript</strong><br>@lmsqueezy/lemonsqueezy.js</div>
+                <div class="sdk-card"><strong>Laravel</strong><br>@lmsqueezy/laravel</div>
+                <div class="sdk-card"><strong>Swift</strong><br>@mauryaratan/lemonsqueezy-swift</div>
+                <div class="sdk-card"><strong>Python</strong><br>@mthli/lemonsqueepy</div>
+            </div>
+        </section>
+
+        <a class="back" href="/">Back to homepage</a>
+    </main>
+</body>
+</html>
