@@ -23,7 +23,7 @@ add_action('after_setup_theme', 'webservices_theme_setup');
  * Enqueue theme styles
  */
 function webservices_enqueue_styles() {
-    wp_enqueue_style('webservices-style', get_stylesheet_uri(), array(), '1.2.0');
+    wp_enqueue_style('webservices-style', get_stylesheet_uri(), array(), '1.2.1');
 }
 add_action('wp_enqueue_scripts', 'webservices_enqueue_styles');
 
@@ -48,3 +48,35 @@ function webservices_output_meta_tags() {
     <?php
 }
 add_action('wp_head', 'webservices_output_meta_tags', 1);
+
+/**
+ * Output Organization and WebSite structured data.
+ */
+function webservices_output_structured_data() {
+    $base_url = trailingslashit(home_url('/'));
+    $organization = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'name' => 'WEBServices',
+        'url' => $base_url,
+        'logo' => get_template_directory_uri() . '/assets/icons/Icon.png',
+        'email' => 'contact@webservicesdev.com',
+        'sameAs' => array(
+            'https://github.com/WEBServices-ORG',
+            'https://webservicesdev.lemonsqueezy.com',
+        ),
+    );
+
+    $website = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => 'WEBServices',
+        'url' => $base_url,
+        'inLanguage' => get_bloginfo('language'),
+    );
+    ?>
+    <script type="application/ld+json"><?php echo wp_json_encode($organization, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    <script type="application/ld+json"><?php echo wp_json_encode($website, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    <?php
+}
+add_action('wp_head', 'webservices_output_structured_data', 2);
