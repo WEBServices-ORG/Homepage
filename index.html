@@ -113,6 +113,47 @@
             color: #dff6ff;
         }
 
+        .support {
+            padding: 44px 0 28px;
+        }
+
+        .support-title {
+            text-align: center;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 0.86rem;
+            margin-bottom: 16px;
+        }
+
+        .support-grid {
+            width: min(980px, calc(100% - 48px));
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .support-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 650;
+            color: var(--text);
+            border: 1px solid var(--line);
+            background: rgba(20, 26, 36, 0.75);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .support-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(90, 210, 255, 0.55);
+            background: rgba(90, 210, 255, 0.14);
+        }
+
         footer {
             width: min(980px, calc(100% - 48px));
             margin: 0 auto 38px;
@@ -161,6 +202,11 @@
                 max-width: 320px;
             }
 
+            .support-grid {
+                width: calc(100% - 32px);
+                grid-template-columns: 1fr 1fr;
+            }
+
             footer {
                 width: calc(100% - 32px);
                 margin-bottom: 24px;
@@ -181,6 +227,16 @@
             </div>
         </div>
     </header>
+
+    <section class="support" aria-label="Support options">
+        <h2 class="support-title">Support</h2>
+        <div class="support-grid">
+            <a class="support-link" href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
+            <a class="support-link" href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            <a class="support-link" href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer">PayPal</a>
+            <a class="support-link" href="https://www.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
