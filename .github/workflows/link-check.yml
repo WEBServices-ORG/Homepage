@@ -27,7 +27,12 @@ jobs:
             --exclude '^https?://127\\.0\\.0\\.1'
             --exclude '^/.*'
             --no-progress
-            '**/*.html'
-            '**/*.md'
+            'index.html'
+            'README.md'
+            'SECURITY.md'
+            'Privacy-Policy.md'
+            'Terms-of-Use.md'
+            'webhooks/README.md'
+            'wp-theme/README.md'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

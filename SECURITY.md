@@ -135,4 +135,4 @@ We will respond within 48 hours and work with you to address the issue.
 - [GitHub Apps Documentation](https://docs.github.com/en/apps)
 - [GitHub Actions Security Best Practices](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
 - [Managing Deploy Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys)
-- [About GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/setting-up-a-github-app/about-apps)
+- [About GitHub Apps](https://docs.github.com/en/apps/creating-github-apps)

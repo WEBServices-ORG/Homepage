@@ -86,7 +86,7 @@ The `wp-theme` directory contains a complete WordPress theme.
 
 **Manual Installation:**
 
-1. Download the theme package from the [latest workflow run](../../actions)
+1. Download the theme package from the [latest workflow run](https://github.com/WEBServices-ORG/homepage/actions)
 2. Go to **WordPress Admin → Appearance → Themes → Add New**
 3. Click **Upload Theme** and select the `webservices-theme.zip` file
 4. Activate the WEBServices theme
