@@ -1,0 +1,15 @@
+.DS_Store
+
+# Environment and local secret files
+.env
+.env.*
+!.env.example
+*.secret
+secrets.*
+
+# Private key and cert material
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks

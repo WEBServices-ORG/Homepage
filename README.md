@@ -125,6 +125,8 @@ The project includes a small webhook listener at `webhooks/kofi-listener.mjs`.
 
 For information about security policies, deploy keys, and best practices, see [SECURITY.md](SECURITY.md).
 
+Automated secret scanning runs in GitHub Actions (`.github/workflows/secret-scan.yml`) on pushes and pull requests to `main`.
+
 ## Contact
 
 - Email: contact@webservicesdev.com
