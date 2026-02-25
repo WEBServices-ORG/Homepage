@@ -38,7 +38,6 @@ jobs:
           cp Terms-of-Use.md out/
           cp Privacy-Policy.md out/
           cp Website.md out/
-          cp License.md out/
           cp LICENSE out/
 
       - name: Upload Pages artifact
