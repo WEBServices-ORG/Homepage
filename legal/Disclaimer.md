@@ -1,0 +1,1 @@
+Disclaimer: All software and content are provided “as is”, without warranty of any kind. Use at your own risk.
