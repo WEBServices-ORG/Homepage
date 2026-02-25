@@ -1,0 +1,26 @@
+{
+  "name": "WEBServices",
+  "short_name": "WEBServices",
+  "description": "Deterministic macOS SwiftUI tooling and products.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1116",
+  "theme_color": "#0e1116",
+  "icons": [
+    {
+      "src": "/assets/favicons/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logos/Logo-160.png",
+      "sizes": "160x160",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logos/Logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

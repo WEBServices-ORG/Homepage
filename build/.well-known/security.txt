@@ -1,0 +1,6 @@
+Contact: mailto:security@webservicesdev.com
+Contact: mailto:support@webservicesdev.com
+Expires: 2027-02-25T00:00:00Z
+Preferred-Languages: en, he
+Policy: https://webservicesdev.com/SECURITY.md
+Hiring: https://github.com/WEBServices-ORG
