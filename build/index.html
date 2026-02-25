@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEBServices - Digital Solutions & Development</title>
+    <meta name="description" content="WEBServices builds deterministic macOS SwiftUI tooling and products for solo developers and small studios.">
+    <link rel="canonical" href="https://webservicesdev.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="WEBServices">
+    <meta property="og:description" content="Deterministic macOS SwiftUI tooling and products.">
+    <meta property="og:url" content="https://webservicesdev.com/">
+    <meta property="og:image" content="https://webservicesdev.com/assets/logos/Logo-256%20(PDF%20:%20Footer%20Use).png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WEBServices">
+    <meta name="twitter:description" content="Deterministic macOS SwiftUI tooling and products.">
+    <meta name="twitter:image" content="https://webservicesdev.com/assets/logos/Logo-256%20(PDF%20:%20Footer%20Use).png">
     <style>
         * {
             margin: 0;
@@ -150,6 +161,33 @@
             background: rgba(90, 210, 255, 0.14);
         }
 
+        .primary-cta {
+            width: min(980px, calc(100% - 48px));
+            margin: 30px auto 18px;
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(20, 26, 36, 0.7);
+            text-align: center;
+        }
+
+        .primary-cta h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .primary-cta p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .primary-cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         footer {
             width: min(980px, calc(100% - 48px));
             margin: 0 auto 38px;
@@ -221,6 +259,10 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .primary-cta {
+                width: calc(100% - 32px);
+            }
+
             footer {
                 width: calc(100% - 32px);
                 margin-bottom: 24px;
@@ -241,6 +283,15 @@
             </div>
         </div>
     </header>
+
+    <section class="primary-cta" aria-label="Primary conversion call-to-action">
+        <h2>Start Fast</h2>
+        <p>Run your first deterministic setup, then activate your license when ready.</p>
+        <div class="primary-cta-actions">
+            <a href="https://github.com/WEBServices-ORG/homepage" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start Trial</a>
+            <a href="https://webservicesdev.lemonsqueezy.com" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Buy License</a>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
