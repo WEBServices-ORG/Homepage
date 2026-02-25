@@ -23,7 +23,6 @@ jobs:
           args: >-
             --verbose
             --accept 200,204,301,302,307,308,403,429
-            --exclude-mail
             --exclude '^https?://localhost'
             --exclude '^https?://127\\.0\\.0\\.1'
             --exclude '^/.*'
