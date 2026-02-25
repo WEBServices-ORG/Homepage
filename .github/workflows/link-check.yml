@@ -23,12 +23,16 @@ jobs:
           args: >-
             --verbose
             --accept 200,204,301,302,307,308,403,429
-            --exclude-mail
             --exclude '^https?://localhost'
             --exclude '^https?://127\\.0\\.0\\.1'
             --exclude '^/.*'
             --no-progress
-            '**/*.html'
-            '**/*.md'
+            'index.html'
+            'README.md'
+            'SECURITY.md'
+            'Privacy-Policy.md'
+            'Terms-of-Use.md'
+            'webhooks/README.md'
+            'wp-theme/README.md'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,13 @@
+{
+  "name": "webservices-homepage-webhooks",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Webhook listener services for WEBServices homepage integrations.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start:kofi": "node webhooks/kofi-listener.mjs"
+  }
+}
