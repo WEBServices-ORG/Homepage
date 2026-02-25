@@ -1,0 +1,34 @@
+name: Link Check
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Check External Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --accept 200,204,301,302,307,308,403,429
+            --exclude-mail
+            --exclude '^https?://localhost'
+            --exclude '^https?://127\\.0\\.0\\.1'
+            --exclude '^/.*'
+            --no-progress
+            '**/*.html'
+            '**/*.md'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

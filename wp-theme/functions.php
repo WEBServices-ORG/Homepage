@@ -80,3 +80,13 @@ function webservices_output_structured_data() {
     <?php
 }
 add_action('wp_head', 'webservices_output_structured_data', 2);
+
+/**
+ * Prevent indexing for low-value utility views.
+ */
+function webservices_output_robots_directives() {
+    if (is_404() || is_search()) {
+        echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+    }
+}
+add_action('wp_head', 'webservices_output_robots_directives', 3);
