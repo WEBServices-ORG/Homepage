@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBServices - Digital Solutions & Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            --bg: #0e1116;
+            --bg-soft: #151b24;
+            --surface: rgba(22, 28, 38, 0.72);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: #edf2ff;
+            --muted: #9dadc7;
+            --accent: #5ad2ff;
+            --accent-strong: #26b8f2;
+            font-family: "Avenir Next", "Segoe UI", "SF Pro Text", -apple-system, sans-serif;
+            background:
+                radial-gradient(circle at 12% 16%, rgba(90, 210, 255, 0.16), transparent 38%),
+                radial-gradient(circle at 86% 8%, rgba(247, 173, 112, 0.14), transparent 32%),
+                linear-gradient(180deg, var(--bg), #0b0e13);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 78px 0 56px;
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 6vw, 4.4rem);
+            letter-spacing: 0.06em;
+            font-weight: 760;
+            background: linear-gradient(130deg, #ffffff 10%, #b5e6fb 46%, #73d8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.22rem);
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .domain {
+            color: var(--accent);
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 34px;
+            display: inline-block;
+            border: 1px solid rgba(90, 210, 255, 0.36);
+            border-radius: 999px;
+            padding: 8px 16px;
+            background: rgba(90, 210, 255, 0.08);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            display: inline-block;
+            min-width: 186px;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+            color: #041318;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(38, 184, 242, 0.32);
+        }
+
+        .btn-secondary {
+            background: rgba(20, 26, 36, 0.8);
+            color: var(--accent);
+            border-color: rgba(90, 210, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(90, 210, 255, 0.14);
+            color: #dff6ff;
+        }
+
+        footer {
+            width: min(980px, calc(100% - 48px));
+            margin: 0 auto 38px;
+            padding: 34px 24px;
+            text-align: center;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--surface);
+            backdrop-filter: blur(4px);
+        }
+
+        footer p {
+            color: var(--muted);
+        }
+
+        .github-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 650;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copy {
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            footer {
+                width: calc(100% - 32px);
+                margin-bottom: 24px;
+                padding: 28px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>WEBServices</h1>
+            <p class="tagline">Building Next-Generation Digital Solutions</p>
+            <p class="domain">webservicesdev.com</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/WEBServices-ORG" class="btn btn-primary" target="_blank">View Our Work</a>
+                <a href="mailto:support@webservicesdev.com" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="https://github.com/WEBServices-ORG" class="github-link" target="_blank">
+                    Explore Our Open Source Projects
+                </a>
+            </p>
+            <p class="footer-copy">WEBServices &copy; 2026 | <a href="https://webservicesdev.com" class="github-link">webservicesdev.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
