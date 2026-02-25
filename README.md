@@ -62,7 +62,11 @@ This repository supports two deployment methods:
 
 The `index.html` file can be served as-is on GitHub Pages or any static hosting provider.
 
-**Local Testing:**
+**Automated deploy (recommended):**
+- The workflow `.github/workflows/pages.yml` deploys to GitHub Pages on every push to `main`.
+- In GitHub repository settings, enable **Pages** and set source to **GitHub Actions**.
+
+**Local testing:**
 ```bash
 python3 -m http.server 8000
 ```
@@ -99,6 +103,23 @@ Then activate it from the WordPress admin dashboard.
 ### GitHub Actions Workflow
 
 The repository includes a GitHub Actions workflow (`.github/workflows/wpcom.yml`) that automatically packages the WordPress theme when changes are pushed to the `main` branch. The packaged theme is available as a workflow artifact.
+
+### 3. Ko-fi Webhook API (Render)
+
+The project includes a small webhook listener at `webhooks/kofi-listener.mjs`.
+
+**Render deployment via Blueprint:**
+
+1. Ensure this repository is connected to Render.
+2. Create a new Blueprint in Render and select this repository.
+3. Render will detect `render.yaml` and provision `webservices-kofi-webhook`.
+4. In Render environment variables, set:
+   - `KOFI_VERIFICATION_TOKEN` (required)
+5. Deploy and copy the service URL, then configure Ko-fi Webhook URL to:
+   - `https://<your-render-service>.onrender.com/`
+
+**Health check endpoint:**
+- `GET /health` returns `200`.
 
 ## Security
 

@@ -1,326 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBServices - Digital Solutions & Development</title>
-    <meta name="description" content="WEBServices builds deterministic macOS SwiftUI tooling and products for solo developers and small studios.">
-    <link rel="canonical" href="https://webservicesdev.com/">
-    <meta name="theme-color" content="#0e1116">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32.png">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="WEBServices">
-    <meta property="og:description" content="Deterministic macOS SwiftUI tooling and products.">
-    <meta property="og:url" content="https://webservicesdev.com/">
-    <meta property="og:image" content="https://webservicesdev.com/assets/logos/Logo-256%20(PDF%20:%20Footer%20Use).png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WEBServices">
-    <meta name="twitter:description" content="Deterministic macOS SwiftUI tooling and products.">
-    <meta name="twitter:image" content="https://webservicesdev.com/assets/logos/Logo-256%20(PDF%20:%20Footer%20Use).png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP4WFCQ5Q1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GP4WFCQ5Q1');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEBServices | Developer Infrastructure & Automation</title>
+  <link rel="icon" type="image/png" href="assets/favicons/favicon-32.png" />
+  <meta name="description" content="WEBServices builds practical developer infrastructure: automation, integrations, and reliable tools for modern product teams." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0f7a65" />
+  <link rel="canonical" href="https://webservicesdev.com/" />
+  <meta property="og:title" content="WEBServices | Developer Infrastructure & Automation" />
+  <meta property="og:description" content="Automation, integrations, and production-grade developer tooling by WEBServices." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://webservicesdev.com/" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/WEBServices-ORG/homepage/main/assets/icons/Icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WEBServices | Developer Infrastructure & Automation" />
+  <meta name="twitter:description" content="Automation, integrations, and production-grade developer tooling by WEBServices." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/WEBServices-ORG/homepage/main/assets/icons/Icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f7f4;
+      --surface: #ffffff;
+      --surface-alt: #eef3eb;
+      --text: #15201b;
+      --muted: #4f5d55;
+      --line: #d1dace;
+      --accent: #0f7a65;
+      --accent-strong: #0b5a4b;
+      --highlight: #e29a3a;
+      --shadow: 0 18px 40px rgba(14, 32, 24, 0.08);
+    }
 
-        body {
-            --bg: #0e1116;
-            --bg-soft: #151b24;
-            --surface: rgba(22, 28, 38, 0.72);
-            --line: rgba(255, 255, 255, 0.14);
-            --text: #edf2ff;
-            --muted: #9dadc7;
-            --accent: #5ad2ff;
-            --accent-strong: #26b8f2;
-            font-family: "Avenir Next", "Segoe UI", "SF Pro Text", -apple-system, sans-serif;
-            background:
-                radial-gradient(circle at 12% 16%, rgba(90, 210, 255, 0.16), transparent 38%),
-                radial-gradient(circle at 86% 8%, rgba(247, 173, 112, 0.14), transparent 32%),
-                linear-gradient(180deg, var(--bg), #0b0e13);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+    body {
+      font-family: "Manrope", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 8% 0%, rgba(15, 122, 101, 0.12), transparent 36%),
+        radial-gradient(circle at 92% 12%, rgba(226, 154, 58, 0.1), transparent 28%);
+    }
 
-        header {
-            padding: 78px 0 56px;
-            text-align: center;
-            border-bottom: 1px solid var(--line);
-        }
+    .container {
+      width: min(1080px, 92vw);
+      margin: 0 auto;
+    }
 
-        h1 {
-            font-size: clamp(2.7rem, 6vw, 4.4rem);
-            letter-spacing: 0.06em;
-            font-weight: 760;
-            background: linear-gradient(130deg, #ffffff 10%, #b5e6fb 46%, #73d8ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-        }
+    header {
+      padding: 28px 0 16px;
+    }
 
-        .tagline {
-            font-size: clamp(1rem, 2vw, 1.22rem);
-            color: var(--muted);
-            margin-bottom: 14px;
-        }
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-        .domain {
-            color: var(--accent);
-            font-size: 1rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            margin-bottom: 34px;
-            display: inline-block;
-            border: 1px solid rgba(90, 210, 255, 0.36);
-            border-radius: 999px;
-            padding: 8px 16px;
-            background: rgba(90, 210, 255, 0.08);
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .cta-buttons {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .brand h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      letter-spacing: 0.01em;
+      font-weight: 700;
+    }
 
-        .btn {
-            padding: 13px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-            display: inline-block;
-            min-width: 186px;
-            text-align: center;
-            border: 1px solid transparent;
-        }
+    .top-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-            color: #041318;
-        }
+    .top-nav a {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.7);
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(38, 184, 242, 0.32);
-        }
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+      outline: none;
+    }
 
-        .btn-secondary {
-            background: rgba(20, 26, 36, 0.8);
-            color: var(--accent);
-            border-color: rgba(90, 210, 255, 0.5);
-        }
+    .org-link {
+      color: var(--accent-strong);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.85);
+    }
 
-        .btn-secondary:hover {
-            background: rgba(90, 210, 255, 0.14);
-            color: #dff6ff;
-        }
+    main { padding: 22px 0 56px; }
 
-        .support-title {
-            text-align: center;
-            color: var(--muted);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-size: 0.86rem;
-            margin-bottom: 16px;
-        }
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: clamp(28px, 6vw, 52px);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.88), rgba(238, 243, 235, 0.92));
+      box-shadow: var(--shadow);
+      margin-bottom: 42px;
+      animation: fade-up .5s ease;
+    }
 
-        .support-grid {
-            width: min(980px, calc(100% - 48px));
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-        }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--accent-strong);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
 
-        .support-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 10px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 650;
-            color: var(--text);
-            border: 1px solid var(--line);
-            background: rgba(20, 26, 36, 0.75);
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-        }
+    .hero h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4.7vw, 3.4rem);
+      line-height: 1.06;
+      margin-bottom: 14px;
+      max-width: 12ch;
+    }
 
-        .support-link:hover {
-            transform: translateY(-2px);
-            border-color: rgba(90, 210, 255, 0.55);
-            background: rgba(90, 210, 255, 0.14);
-        }
+    .hero p {
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: 22px;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
 
-        .primary-cta {
-            width: min(980px, calc(100% - 48px));
-            margin: 30px auto 18px;
-            padding: 24px;
-            border-radius: 14px;
-            border: 1px solid var(--line);
-            background: rgba(20, 26, 36, 0.7);
-            text-align: center;
-        }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-        .primary-cta h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      text-decoration: none;
+      padding: 11px 18px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
 
-        .primary-cta p {
-            color: var(--muted);
-            margin-bottom: 14px;
-        }
+    .btn-primary {
+      color: #ffffff;
+      background: linear-gradient(100deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 10px 24px rgba(15, 122, 101, 0.24);
+    }
 
-        .primary-cta-actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: #ffffff;
+    }
 
-        footer {
-            width: min(980px, calc(100% - 48px));
-            margin: 0 auto 38px;
-            padding: 34px 24px;
-            text-align: center;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            background: var(--surface);
-            backdrop-filter: blur(4px);
-        }
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
 
-        footer p {
-            color: var(--muted);
-        }
+    section { margin-bottom: 44px; }
 
-        .github-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 650;
-        }
+    h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
 
-        .github-link:hover {
-            text-decoration: underline;
-        }
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 64ch;
+    }
 
-        .footer-copy {
-            margin-top: 16px;
-        }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-        .footer-links {
-            margin-top: 16px;
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .footer-links a {
-            color: var(--muted);
-            text-decoration: none;
-        }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(14, 32, 24, 0.12);
+    }
 
-        .footer-links a:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.4rem;
-            }
+    .card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.17rem;
+      font-weight: 700;
+    }
 
-            .tagline {
-                font-size: 1.1rem;
-            }
+    .badge {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: rgba(226, 154, 58, 0.18);
+      color: #6e490f;
+      border: 1px solid rgba(226, 154, 58, 0.45);
+      white-space: nowrap;
+    }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+    .card p { color: var(--muted); }
 
-            .btn {
-                width: 100%;
-                max-width: 320px;
-            }
+    .list {
+      list-style: none;
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-            .support-grid {
-                width: calc(100% - 32px);
-                grid-template-columns: 1fr 1fr;
-            }
+    .list li::before {
+      content: "• ";
+      color: var(--highlight);
+      font-weight: 700;
+    }
 
-            .primary-cta {
-                width: calc(100% - 32px);
-            }
+    .product-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 16px;
+    }
 
-            footer {
-                width: calc(100% - 32px);
-                margin-bottom: 24px;
-                padding: 28px 18px;
-            }
-        }
-    </style>
+    .product-links a {
+      color: var(--accent-strong);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .product-links a:hover,
+    .product-links a:focus-visible {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .security-panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      background: var(--surface-alt);
+    }
+
+    .security-panel p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .security-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .security-links a {
+      text-decoration: none;
+      color: var(--accent-strong);
+      border: 1px solid rgba(15, 122, 101, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #ffffff;
+      font-weight: 600;
+    }
+
+    .support-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .support-icon {
+      min-width: 146px;
+      height: 46px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .support-icon:hover,
+    .support-icon:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+      outline: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 42px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--accent-strong); text-decoration: underline; }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+
+    .legal-line { margin-top: 8px; font-size: 0.88rem; }
+
+    @keyframes fade-up {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-row {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 26px 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .support-icon {
+        min-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>WEBServices</h1>
-            <p class="tagline">Building Next-Generation Digital Solutions</p>
-            <p class="domain">webservicesdev.com</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/WEBServices-ORG" class="btn btn-primary" target="_blank">View Our Work</a>
-                <a href="mailto:support@webservicesdev.com" class="btn btn-secondary">Contact Us</a>
-            </div>
+  <header>
+    <div class="container">
+      <div class="brand-row">
+        <div class="brand">
+          <img src="assets/icons/Icon.png" alt="WEBServices icon" style="width:30px;height:30px;border-radius:7px;border:1px solid #d1dace;" />
+          <h1>WEBServices</h1>
+          <a class="org-link" href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub Organization">⌁</a>
         </div>
-    </header>
+        <nav class="top-nav" aria-label="Primary navigation">
+          <a href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Store</a>
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#security">Security</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <section class="primary-cta" aria-label="Primary conversion call-to-action">
-        <h2>Start Fast</h2>
-        <p>Run your first deterministic setup, then activate your license when ready.</p>
-        <div class="primary-cta-actions">
-            <a href="https://github.com/WEBServices-ORG/homepage" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start Trial</a>
-            <a href="https://store.webservicesdev.com" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Buy License</a>
-        </div>
+  <main class="container">
+    <section class="hero" aria-label="Introduction">
+      <span class="hero-tag">Production-grade tooling</span>
+      <h2>Infrastructure for teams that ship weekly.</h2>
+      <p>We build sharp developer tooling for automation, delivery flow, and service integrations. The goal is simple: faster execution without operational noise.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Open store</a>
+        <a class="btn btn-primary" href="#contact">Start a conversation</a>
+        <a class="btn btn-secondary" href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">View open source</a>
+      </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <h2 class="support-title">Support</h2>
-            <div class="support-grid">
-                <a class="support-link" href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
-                <a class="support-link" href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-                <a class="support-link" href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer">PayPal</a>
-                <a class="support-link" href="https://store.webservicesdev.com" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>
-                <a class="support-link" href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-            <p>
-                <a href="https://github.com/WEBServices-ORG" class="github-link" target="_blank">
-                    Explore Our Open Source Projects
-                </a>
-            </p>
-            <p class="footer-copy">Contact = <a href="mailto:contact@webservicesdev.com" class="github-link">contact@webservicesdev.com</a></p>
-            <p class="footer-copy">Support = <a href="mailto:support@webservicesdev.com" class="github-link">support@webservicesdev.com</a></p>
-            <p class="footer-links">
-                <a href="/api.html">API</a>
-                <a href="/Terms-of-Use.md">Terms</a>
-                <a href="/Privacy-Policy.md">Privacy</a>
-                <a href="/legal/Disclaimer.md">Disclaimer</a>
-            </p>
-            <p class="footer-copy">WEBServices &copy; 2026 | <a href="https://webservicesdev.com" class="github-link">webservicesdev.com</a></p>
+    <section id="services" aria-labelledby="services-heading">
+      <h2 id="services-heading">Services</h2>
+      <p class="section-intro">Hands-on engineering support focused on practical architecture, robust integrations, and reliable delivery pipelines.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-header">
+            <h3>Automation Engineering</h3>
+            <span class="badge">Core</span>
+          </div>
+          <p>Automate repetitive operational work so product teams can focus on roadmap execution.</p>
+          <ul class="list" aria-label="Automation engineering offerings">
+            <li>Release and deployment workflows</li>
+            <li>Task orchestration and process hooks</li>
+            <li>Operational tooling for team velocity</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3>Integrations</h3>
+            <span class="badge">API</span>
+          </div>
+          <p>Connect third-party systems cleanly with explicit contracts and maintainable ownership.</p>
+          <ul class="list" aria-label="Integration offerings">
+            <li>Email and domain service integrations</li>
+            <li>Billing and webhook event pipelines</li>
+            <li>Monitoring and alerting integrations</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h3>Platform Reliability</h3>
+            <span class="badge">Ops</span>
+          </div>
+          <p>Improve service confidence with hardened defaults, clear runbooks, and health visibility.</p>
+          <ul class="list" aria-label="Platform reliability offerings">
+            <li>Incident readiness and ownership maps</li>
+            <li>Security policy and disclosure setup</li>
+            <li>Production-grade operational baseline</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="products" aria-labelledby="products-heading">
+      <h2 id="products-heading">Products</h2>
+      <p class="section-intro">Our open-source and commercial tools are built for maintainers who value clarity, durability, and low operational drag.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-header">
+            <h3>WEBServices Platform</h3>
+            <span class="badge">In Progress</span>
+          </div>
+          <p>A focused toolkit for automation and service operations with explicit interfaces and strong defaults.</p>
+          <div class="product-links">
+            <a href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer">Store</a>
+            <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">GitHub organization</a>
+            <a href="Website.md">Roadmap notes</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="security" aria-labelledby="security-heading">
+      <h2 id="security-heading">Security</h2>
+      <div class="security-panel">
+        <p>Security reports are handled with clear intake and response guidance.</p>
+        <p>For sensitive disclosures, use the published process and contact channels below.</p>
+        <div class="security-links">
+          <a href="SECURITY.md">Security Policy</a>
+          <a href="mailto:security@webservicesdev.com">security@webservicesdev.com</a>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <section aria-labelledby="support-heading">
+      <h2 id="support-heading">Support</h2>
+      <p class="section-intro">If our tooling is useful to your team, support ongoing maintenance and roadmap work.</p>
+      <div class="support-row" aria-label="Support links">
+        <a class="support-icon" href="https://webservicesdev.lemonsqueezy.com" target="_blank" rel="noopener noreferrer" aria-label="Lemon Squeezy Store">Lemon Squeezy Store</a>
+        <a class="support-icon" href="https://buymeacoffee.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">Buy Me a Coffee</a>
+        <a class="support-icon" href="https://ko-fi.com/webservices" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi">Ko-fi</a>
+        <a class="support-icon" href="https://paypal.me/webservicesdev" target="_blank" rel="noopener noreferrer" aria-label="PayPal">PayPal</a>
+        <a class="support-icon" href="https://github.com/sponsors/WEBServices-ORG" target="_blank" rel="noopener noreferrer" aria-label="GitHub Sponsors">GitHub Sponsors</a>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p class="section-intro">Need implementation support or want to collaborate on tooling? Reach out and include your stack, current bottleneck, and target timeline.</p>
+      <div class="security-links">
+        <a href="mailto:contact@webservicesdev.com">contact@webservicesdev.com</a>
+        <a href="mailto:support@webservicesdev.com">support@webservicesdev.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <img class="avatar" src="https://www.gravatar.com/avatar/9a5fa8e43bb11ac0829c9944075751a4?s=92&d=identicon" alt="WEBServices avatar" />
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:contact@webservicesdev.com">contact@webservicesdev.com</a>
+        <a href="mailto:support@webservicesdev.com">support@webservicesdev.com</a>
+        <a href="Terms-of-Use.md">Terms of Use</a>
+        <a href="Privacy-Policy.md">Privacy Policy</a>
+        <a href="https://github.com/WEBServices-ORG" target="_blank" rel="noopener noreferrer">About Us</a>
+      </nav>
+      <p>© WEBServices — Registered company, Israel</p>
+      <p class="legal-line">Disclaimer: All software and content are provided “as is”, without warranty of any kind. Use at your own risk.</p>
+    </div>
+  </footer>
 </body>
 </html>

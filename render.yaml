@@ -1,14 +1,12 @@
 services:
   - type: web
-    name: webservices-homepage
-    runtime: static
-    branch: main
-    staticPublishPath: .
-    pullRequestPreviewsEnabled: false
-    headers:
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
-      - path: /*
-        name: Referrer-Policy
-        value: strict-origin-when-cross-origin
+    name: webservices-kofi-webhook
+    runtime: node
+    plan: free
+    buildCommand: "true"
+    startCommand: node webhooks/kofi-listener.mjs
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: KOFI_VERIFICATION_TOKEN
+        sync: false
